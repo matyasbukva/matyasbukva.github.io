@@ -22,7 +22,7 @@
       overflow-x: hidden;
     }
     .overlay {
-      background: rgba(255, 255, 255, 0.53);
+      background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(3px);
       min-height: 100vh;
       width: 100vw;
@@ -40,43 +40,35 @@
       flex-direction: column;
       text-align: center;
     }
-    .headline {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #3848a0;
-      background: rgba(255,255,255,0.83);
-      display: inline-block;
-      padding: 0.4em 1.3em;
-      border-radius: 2em;
-      margin-bottom: 0.9em;
-      letter-spacing: 0.03em;
-      box-shadow: 0 2px 12px rgba(80,80,120,0.05);
-    }
     h1 {
-      font-size: 2.4rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: #252525;
       margin-bottom: 0.3em;
+      color: #2a2a2a;
+      letter-spacing: 0.05em;
+    }
+    .subtitle {
+      font-size: 1.4rem;
+      margin-bottom: 1.2em;
+      color: #444;
       letter-spacing: 0.01em;
     }
     .bio {
-      font-size: 1.13rem;
-      color: #363636;
-      background: rgba(255,255,255,0.78);
+      font-size: 1.1rem;
+      color: #333;
+      background: rgba(255,255,255,0.7);
       border-radius: 1em;
-      padding: 1.25em 2.2em;
+      padding: 1.2em 2em;
       display: inline-block;
-      max-width: 650px;
+      max-width: 600px;
       margin-bottom: 2em;
       box-shadow: 0 2px 18px rgba(60,60,90,0.08);
-      text-align: left;
     }
     .links {
-      margin-top: 1.3em;
+      margin-top: 1.5em;
       display: flex;
       gap: 1em;
       justify-content: center;
-      flex-wrap: wrap;
     }
     .links a {
       display: inline-block;
@@ -87,33 +79,34 @@
       border-radius: 2em;
       font-weight: 600;
       font-size: 1.1rem;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: background 0.2s, transform 0.2s;
       box-shadow: 0 4px 16px rgba(120,60,160,0.13);
     }
     .links a:hover {
       background: linear-gradient(90deg, #32e5b8 0%, #e27cb2 100%);
-      transform: translateY(-3px) scale(1.07);
-      box-shadow: 0 8px 24px rgba(120,60,160,0.15);
+      transform: translateY(-3px) scale(1.06);
     }
     @media (max-width: 650px) {
-      .headline { font-size: 1.01rem; padding: 0.4em 0.7em;}
-      h1 { font-size: 1.3rem; }
-      .bio { font-size: 0.97rem; padding: 1em 0.6em; }
+      h1 { font-size: 2rem; }
+      .subtitle { font-size: 1.1rem; }
+      .bio { font-size: 0.97rem; padding: 1em 0.5em; }
       .links a { font-size: 1rem; padding: 0.7em 1em; }
-      .container { padding: 1.5em 0.5em; }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
   <div class="container">
-    <div class="headline">
-      | Biostatistics Consultant | Data Scientist | Helping Researchers and Teams Leverage Data with Advanced Biostatistics and Machine Learning |
-    </div>
     <h1>BMatyasB</h1>
+    <div class="subtitle">
+      Biostatistics Consultant & Data Scientist  
+    </div>
     <div class="bio">
-      I am a scientist specializing in biostatistics and machine learning applications in biomedical studies, with a particular focus on developing clinically applicable models. By bridging computational techniques with biological insights, I deliver data-driven solutions that support clinical decision-making and deepen our understanding of complex health issues.<br><br>
-      With a passion for advancing medical research through data, I am open to collaborative opportunities and consulting projects that aim to leverage biostatistics and machine learning to drive innovation in health sciences.
+      Welcome! I'm Matyas, a scientist who helps researchers, clinicians, and teams turn complex biomedical data into clear, actionable insights. My expertise lies at the intersection of biostatistics and machine learning—developing robust, clinically relevant models that do more than just crunch numbers.<br><br>
+      Whether you’re building a predictive tool, validating clinical research, or simply want to explore your data’s hidden stories, I bring both analytical rigor and a collaborative mindset to every project.<br><br>
+      If you’re looking to make your research more impactful with advanced statistics or data science, let’s connect. I’m open to consulting, collaboration, or even just an inspiring chat about science, data, and discovery.
+      <br><br>
+      <i>“Good data tells a story. Great analysis brings it to life.”</i>
     </div>
     <div class="links">
       <a href="mailto:bmatyasb@gmail.com" title="Send Email">Email</a>
