@@ -21,18 +21,9 @@
       position: relative;
       overflow-x: hidden;
     }
-    .overlay {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(3px);
-      min-height: 100vh;
-      width: 100vw;
-      position: absolute;
-      top: 0; left: 0;
-      z-index: 1;
-    }
+    /* Overlay törölve */
     .container {
       position: relative;
-      z-index: 2;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -46,17 +37,19 @@
       margin-bottom: 0.3em;
       color: #2a2a2a;
       letter-spacing: 0.05em;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.28); /* Jobb kontraszt világosabb háttéren is */
     }
     .subtitle {
       font-size: 1.4rem;
       margin-bottom: 1.2em;
       color: #444;
       letter-spacing: 0.01em;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.18);
     }
     .bio {
       font-size: 1.1rem;
-      color: #333;
-      background: rgba(255,255,255,0.7);
+      color: #222;
+      background: rgba(255,255,255,0.82);
       border-radius: 1em;
       padding: 1.2em 2em;
       display: inline-block;
@@ -74,17 +67,18 @@
       display: inline-block;
       text-decoration: none;
       color: #fff;
-      background: linear-gradient(90deg, #5f74f8 0%, #e27cb2 100%);
+      background: linear-gradient(90deg, #0092c7 0%, #43e0e3 100%);
       padding: 0.7em 1.7em;
       border-radius: 2em;
       font-weight: 600;
       font-size: 1.1rem;
       transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 4px 16px rgba(120,60,160,0.13);
+      box-shadow: 0 4px 16px rgba(0,80,120,0.13);
     }
     .links a:hover {
-      background: linear-gradient(90deg, #32e5b8 0%, #e27cb2 100%);
+      background: linear-gradient(90deg, #ff715b 0%, #ffb073 100%);
       transform: translateY(-3px) scale(1.06);
+      color: #fff;
     }
     @media (max-width: 650px) {
       h1 { font-size: 2rem; }
@@ -95,7 +89,6 @@
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
   <div class="container">
     <h1>Mátyás Bukva</h1>
     <div class="subtitle">
@@ -116,5 +109,3 @@
   </div>
 </body>
 </html>
-
-
