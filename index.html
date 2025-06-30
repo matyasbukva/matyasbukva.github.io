@@ -9,15 +9,14 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #161922 url('assets/ez.gif') no-repeat top center;
-      background-size: cover;
+      background: #161922; /* NINCS háttérkép, csak sima sötét szín */
       font-family: 'Fira Mono', monospace;
     }
     .header-image {
       width: 100%;
-      height: 400px; /* Magasság növelve */
-      background: url('assets/ez.gif') no-repeat center 30px; /* Középre, 30px-re lejjebb */
-      background-size: contain; /* Teljes kép mindig látszik */
+      height: 400px; /* vagy amekkora kell */
+      background: url('assets/header.png') no-repeat center center;
+      background-size: cover;  /* kitölti, nem ismétli! */
       border-bottom: 8px solid #161922;
     }
     .container {
