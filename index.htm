@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Developer OS</title>
@@ -64,6 +64,9 @@
       outline: none;
       display: flex; 
       align-items: center; 
+      /* EZEKKEL EGÉSZÜLT KI A CSS */
+      text-decoration: none;
+      color: inherit;
     }
     .sidebar-section:hover {
       background: #e7e7e7;
@@ -78,8 +81,6 @@
     }
     .content-area {
       flex: 1;
-      border-radius: 12px;
-      padding: 30px 42px 34px 42px;
       min-width: 350px;
     }
     
@@ -88,9 +89,6 @@
         border: 1px solid #f0f0f0;
         border-radius: 12px;
         padding: 40px;
-        display: flex;
-        align-items: center;
-        gap: 40px;
     }
     .intro-text {
         flex: 1;
@@ -114,6 +112,7 @@
         color: #444;
         margin: 0 0 1.5em 0;
     }
+
     #open-contact-modal {
         font-family: 'Fira Mono', monospace;
         font-weight: bold;
@@ -125,17 +124,22 @@
         cursor: pointer;
         transition: background-color 0.2s;
         font-size: 1rem;
+        margin-top: 10px;
     }
     #open-contact-modal:hover {
         background-color: #555;
     }
-    .profile-image img {
+    
+    .profile-image-container {
+      flex-shrink: 0;
+    }
+    .profile-image-container img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid #fff;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
     }
     .modal {
         display: none;
@@ -212,19 +216,24 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-    @media (max-width: 1100px) {
-      .flex-row { flex-direction: column; padding: 0 10px;}
-      .sidebar { flex: none; width: 100%; }
+    @media (max-width: 1200px) {
+      .flex-row { 
+        flex-direction: column; 
+        align-items: center;
+        padding: 0 10px;
+      }
+      .sidebar, .content-area { 
+        flex: none; 
+        width: 100%; 
+        max-width: 800px;
+      }
+       .profile-image-container {
+        margin-top: 30px;
+      }
       .main-title { margin-left: 24px;}
     }
+
     @media (max-width: 768px) {
-        .intro-box {
-            flex-direction: column;
-            text-align: center;
-        }
-        .intro-box h2 {
-            justify-content: center;
-        }
         .modal-content {
             margin: 20% auto;
         }
@@ -238,7 +247,12 @@
     <div class="flex-row">
       <div class="sidebar">
         <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg></i>Home</div>
-        <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg></i>My work so far</div>
+        <a href="work.htm" class="sidebar-section">
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg>
+          </i>
+          My work so far
+        </a>
         <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></i>JaspPlotBuilder</div>
       </div>
       <div class="content-area">
@@ -248,12 +262,12 @@
                 <p>I help researchers and healthcare teams make smarter decisions through advanced biostatistics and machine learning.</p>
                 <p>My work includes statistical analysis, interpretation, and communication—extracting meaningful insights from biomedical data and helping translate them into impactful, well-crafted publications.</p>
                 <p>Whether you’re building a predictive tool, validating clinical research, or simply want to explore your data’s hidden stories, I bring both analytical rigor and a collaborative mindset to every project.</p>
-                <button id="open-contact-modal">Kapcsolat</button>
-            </div>
-            <div class="profile-image">
-                <img src="assets/profil.png" alt="Mátyás Bukva profilképe">
+                <button id="open-contact-modal">Let's connect.</button>
             </div>
         </div>
+      </div>
+      <div class="profile-image-container">
+        <img src="assets/profil.png" alt="Profile picture of Mátyás Bukva">
       </div>
     </div>
   </div>
@@ -261,15 +275,15 @@
   <div id="contact-modal" class="modal">
     <div class="modal-content">
       <span class="close-button">&times;</span>
-      <h2>Kapcsolatfelvétel</h2>
+      <h2>Get in Touch</h2>
       <form action="https://formspree.io/f/mgvydzyp" method="POST">
-        <label for="email">Email címed:</label>
+        <label for="email">Your Email:</label>
         <input type="email" id="email" name="email" required>
         
-        <label for="message">Üzenet:</label>
+        <label for="message">Message:</label>
         <textarea id="message" name="message" rows="6" required></textarea>
         
-        <button type="submit">Üzenet küldése</button>
+        <button type="submit">Send Message</button>
       </form>
     </div>
   </div>
