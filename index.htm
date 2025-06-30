@@ -1,318 +1,427 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Developer OS</title>
-  <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #161922;
-      font-family: 'Fira Mono', monospace;
-    }
-    .header-image {
-      width: 100%;
-      height: 400px;
-      background: url('assets/ez.gif') no-repeat center center;
-      background-size: cover;
-      border-bottom: 8px solid #161922;
-    }
-    .container {
-      background: #fff;
-      border-radius: 24px 24px 0 0;
-      margin-top: -40px;
-      padding: 40px 0 60px 0;
-      box-shadow: 0 8px 40px #000a;
-      min-height: 600px;
-    }
-    .main-title {
-      font-size: 2.4rem;
-      font-weight: bold;
-      margin: 0 0 20px 0;
-      letter-spacing: 1px;
-      color: #222;
-      font-family: 'Fira Mono', monospace;
-      margin-left: 96px;
-    }
-    .flex-row {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      max-width: 1800px;
-      margin: 0 auto;
-      gap: 48px;
-      padding: 0 60px;
-    }
-    .sidebar {
-      flex: 0 0 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-    .sidebar-section {
-      background: #f7f7f7;
-      border-radius: 12px;
-      padding: 18px 30px;
-      font-family: 'Fira Mono', monospace;
-      font-size: 1.12rem;
-      box-shadow: 0 2px 12px #aaa2;
-      cursor: pointer;
-      transition: background 0.15s;
-      border: none;
-      outline: none;
-      display: flex; 
-      align-items: center; 
-      /* EZEKKEL EGÉSZÜLT KI A CSS */
-      text-decoration: none;
-      color: inherit;
-    }
-    .sidebar-section:hover {
-      background: #e7e7e7;
-    }
-    .sidebar-section i {
-      font-style: normal;
-      margin-right: 15px; 
-      color: #333;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .content-area {
-      flex: 1;
-      min-width: 350px;
-    }
-    
-    .intro-box {
-        background-color: #ffffff;
-        border: 1px solid #f0f0f0;
-        border-radius: 12px;
-        padding: 40px;
-    }
-    .intro-text {
-        flex: 1;
-    }
-    .intro-box h2 {
-        font-family: 'Fira Mono', monospace;
-        font-size: 1.4rem;
-        color: #333;
-        margin: 0 0 20px 0;
-        display: flex;
-        align-items: center;
-    }
-    .intro-box h2 span {
-        margin-right: 15px;
-        font-size: 1.6rem;
-    }
-    .intro-box p {
-        font-family: 'Fira Mono', monospace;
-        font-size: 1.05rem;
-        line-height: 1.7;
-        color: #444;
-        margin: 0 0 1.5em 0;
-    }
-
-    #open-contact-modal {
-        font-family: 'Fira Mono', monospace;
-        font-weight: bold;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        font-size: 1rem;
-        margin-top: 10px;
-    }
-    #open-contact-modal:hover {
-        background-color: #555;
-    }
-    
-    .profile-image-container {
-      flex-shrink: 0;
-    }
-    .profile-image-container img {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid #fff;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-    }
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.6);
-        animation: fadeIn 0.3s ease-out;
-    }
-    .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 30px 40px;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 600px;
-        position: relative;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-        animation: slideIn 0.4s ease-out;
-    }
-    .close-button {
-        color: #aaa;
-        position: absolute;
-        top: 15px;
-        right: 25px;
-        font-size: 32px;
-        font-weight: bold;
-        line-height: 1;
-    }
-    .close-button:hover,
-    .close-button:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    .modal-content h2 {
-        margin-top: 0;
-        font-family: 'Fira Mono', monospace;
-    }
-    .modal-content form label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #555;
-    }
-    .modal-content form input[type="email"],
-    .modal-content form textarea {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-family: 'Fira Mono', monospace;
-        font-size: 1rem;
-        box-sizing: border-box;
-    }
-    .modal-content form button[type="submit"] {
-        width: 100%;
-        background-color: #333;
-        color: white;
-        padding: 14px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-family: 'Fira Mono', monospace;
-        font-size: 1.1rem;
-        font-weight: bold;
-    }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    @media (max-width: 1200px) {
-      .flex-row { 
-        flex-direction: column; 
-        align-items: center;
-        padding: 0 10px;
-      }
-      .sidebar, .content-area { 
-        flex: none; 
-        width: 100%; 
-        max-width: 800px;
-      }
-       .profile-image-container {
-        margin-top: 30px;
-      }
-      .main-title { margin-left: 24px;}
-    }
-
-    @media (max-width: 768px) {
-        .modal-content {
-            margin: 20% auto;
+    <meta charset="UTF-8">
+    <title>Mátyás Bukva | Biostatistician & Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Alapbeállítások és Változók --- */
+        :root {
+            --bg-color: #111319;
+            --surface-color: rgba(38, 41, 51, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary-text: #EAECEF;
+            --secondary-text: #A0A7B5;
+            --accent-color: #4A90E2;
+            --accent-hover: #6AAFFF;
+            /* MÓDOSÍTÁS: Új, kettős monospace betűtípus változók */
+            --font-main: 'Fira Mono', monospace;          /* Egyszerűbb mono a törzsszövegnek */
+            --font-headings: 'Source Code Pro', monospace; /* Kiemelt mono a címeknek/gomboknak */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --transition-speed: 0.3s;
         }
-    }
-  </style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 15% 15%, rgba(74, 144, 226, 0.1), transparent 30%),
+                              radial-gradient(circle at 85% 75%, rgba(74, 144, 226, 0.08), transparent 40%);
+            font-family: var(--font-main); /* Alapértelmezett betűtípus a sima mono */
+            color: var(--primary-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Header --- */
+        .header-image {
+            width: 100%;
+            height: 350px;
+            background: url('assets/ez.gif') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        .header-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, var(--bg-color) 5%, transparent 50%);
+        }
+
+        /* --- Konténer és Layout --- */
+        .container {
+            max-width: 1400px;
+            margin: -80px auto 0 auto;
+            padding: 0 40px 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 2.5rem; /* Kicsit csökkentve a méret, mert a mono betűk szélesebbek */
+            margin: 0 0 40px 0;
+            letter-spacing: -0.5px;
+            color: var(--primary-text);
+            font-family: var(--font-headings);
+            font-weight: 700;
+            text-align: center;
+        }
+        .main-title span {
+            color: var(--accent-color);
+        }
+        
+        .flex-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        /* --- Oldalsáv (Sidebar) --- */
+        .sidebar {
+            flex: 0 0 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: sticky;
+            top: 40px;
+        }
+        
+        .sidebar-section {
+            background: var(--surface-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-family: var(--font-headings);
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            text-decoration: none;
+            color: var(--primary-text);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-section:hover, .sidebar-section.active {
+            background: rgba(74, 144, 226, 0.2);
+            border-color: rgba(74, 144, 226, 0.5);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        .sidebar-section i {
+            color: var(--accent-color);
+            transition: color var(--transition-speed) ease;
+        }
+        .sidebar-section:hover i {
+            color: var(--accent-hover);
+        }
+        
+        /* --- Tartalmi rész (Content Area) --- */
+        .content-area {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .intro-box {
+            background: var(--surface-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-image-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .intro-text h2 {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .intro-text h2 span {
+            margin-right: 12px;
+            font-size: 2rem;
+            display: inline-block;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0.0deg) }
+            10% { transform: rotate(14.0deg) }
+            20% { transform: rotate(-8.0deg) }
+            30% { transform: rotate(14.0deg) }
+            40% { transform: rotate(-4.0deg) }
+            50% { transform: rotate(10.0deg) }
+            60% { transform: rotate(0.0deg) }
+            100% { transform: rotate(0.0deg) }
+        }
+
+        .intro-text p {
+            font-family: var(--font-main); /* Expliciten beállítva a törzsszöveg betűtípusa */
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--secondary-text);
+            margin: 0 0 1.5em 0;
+        }
+        .intro-text p:last-of-type {
+            margin-bottom: 2em;
+        }
+        
+        #open-contact-modal {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            font-size: 1rem;
+        }
+        
+        #open-contact-modal:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* --- Modális ablak --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .modal-content {
+            background-color: #20232A;
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 550px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            animation: slideIn 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .close-button {
+            color: var(--secondary-text);
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .close-button:hover, .close-button:focus {
+            color: var(--primary-text);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-family: var(--font-headings);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .modal-content form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 400; /* Vékonyabb, hogy a tartalomra fókuszáljunk */
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+        
+        .modal-content form input[type="email"],
+        .modal-content form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            background-color: #2A2D35;
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--primary-text);
+            box-sizing: border-box;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .modal-content form input:focus, .modal-content form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+        }
+
+        .modal-content form button[type="submit"] {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .modal-content form button:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* --- Animációk --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* --- Reszponzivitás --- */
+        @media (max-width: 1024px) {
+            .flex-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                position: static;
+                flex: none;
+                width: 100%;
+                max-width: 800px;
+            }
+            .main-title { font-size: 2.2rem; }
+            .intro-box { flex-direction: column; align-items: center; text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px 40px 20px; }
+            .main-title { font-size: 1.8rem; }
+            .intro-text h2 { font-size: 1.6rem; justify-content: center; }
+            .modal-content { margin: 5% auto; padding: 30px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="header-image"></div>
-  <div class="container">
-    <div class="main-title">Mátyás Bukva - your favourite biostatistican</div>
-    <div class="flex-row">
-      <div class="sidebar">
-        <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg></i>Home</div>
-        <a href="work.htm" class="sidebar-section">
-          <i>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg>
-          </i>
-          My work so far
-        </a>
-        <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></i>JaspPlotBuilder</div>
-      </div>
-      <div class="content-area">
-        <div class="intro-box">
-            <div class="intro-text">
-                <h2><span>💡</span>Hi there!</h2>
-                <p>I help researchers and healthcare teams make smarter decisions through advanced biostatistics and machine learning.</p>
-                <p>My work includes statistical analysis, interpretation, and communication—extracting meaningful insights from biomedical data and helping translate them into impactful, well-crafted publications.</p>
-                <p>Whether you’re building a predictive tool, validating clinical research, or simply want to explore your data’s hidden stories, I bring both analytical rigor and a collaborative mindset to every project.</p>
-                <button id="open-contact-modal">Let's connect.</button>
+
+    <div class="header-image"></div>
+    
+    <div class="container">
+        <div class="main-title">Mátyás Bukva - your favourite <span>biostatistician</span></div>
+        
+        <div class="flex-row">
+            <div class="sidebar">
+                <div class="sidebar-section active">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg></i>
+                    <span>Home</span>
+                </div>
+                <a href="work.htm" class="sidebar-section">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg></i>
+                    <span>My work so far</span>
+                </a>
+                <div class="sidebar-section">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></i>
+                    <span>JaspPlotBuilder</span>
+                </div>
+            </div>
+            
+            <div class="content-area">
+                <div class="intro-box">
+                    <div class="profile-image-container">
+                        <img src="assets/profil.png" alt="Profile picture of Mátyás Bukva">
+                    </div>
+                    <div class="intro-text">
+                        <h2><span>👋</span>Hi there!</h2>
+                        <p>I help researchers and healthcare teams make smarter decisions through advanced biostatistics and machine learning.</p>
+                        <p>My work includes statistical analysis, interpretation, and communication—extracting meaningful insights from biomedical data and helping translate them into impactful, well-crafted publications.</p>
+                        <p>Whether you’re building a predictive tool, validating clinical research, or simply want to explore your data’s hidden stories, I bring both analytical rigor and a collaborative mindset to every project.</p>
+                        <button id="open-contact-modal">Let's connect.</button>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-      <div class="profile-image-container">
-        <img src="assets/profil.png" alt="Profile picture of Mátyás Bukva">
-      </div>
     </div>
-  </div>
 
-  <div id="contact-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Get in Touch</h2>
-      <form action="https://formspree.io/f/mgvydzyp" method="POST">
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-        
-        <button type="submit">Send Message</button>
-      </form>
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Get in Touch</h2>
+            <form action="https://formspree.io/f/mgvydzyp" method="POST">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const modal = document.getElementById('contact-modal');
-    const openModalBtn = document.getElementById('open-contact-modal');
-    const closeModalBtn = document.querySelector('.close-button');
+    <script>
+        const modal = document.getElementById('contact-modal');
+        const openModalBtn = document.getElementById('open-contact-modal');
+        const closeModalBtn = document.querySelector('.close-button');
 
-    openModalBtn.addEventListener('click', () => {
-      modal.style.display = 'block';
-    });
+        openModalBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
 
-    closeModalBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
-    });
-
-    window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
+        const closeModal = () => {
             modal.style.display = 'none';
         }
-    });
-  </script>
+
+        closeModalBtn.addEventListener('click', closeModal);
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
