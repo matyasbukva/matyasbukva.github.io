@@ -83,18 +83,17 @@
       min-width: 350px;
     }
     
-    /* EZ A RÉSZ MÓDOSULT A PROFILKÉP MIATT */
     .intro-box {
         background-color: #ffffff;
         border: 1px solid #f0f0f0;
         border-radius: 12px;
         padding: 40px;
-        display: flex; /* Flexbox elrendezés */
-        align-items: center; /* Vertikális középre igazítás */
-        gap: 40px; /* Térköz a szöveg és a kép között */
+        display: flex;
+        align-items: center;
+        gap: 40px;
     }
     .intro-text {
-        flex: 1; /* A szöveg elfoglalja a maradék helyet */
+        flex: 1;
     }
     .intro-box h2 {
         font-family: 'Fira Mono', monospace;
@@ -118,11 +117,12 @@
     .intro-box p:last-child {
         margin-bottom: 0;
     }
+    /* ITT VAN A MÓDOSÍTOTT MÉRET */
     .profile-image img {
-        width: 160;
-        height: 160;
-        border-radius: 50%; /* Kör alak */
-        object-fit: cover; /* Kép ne torzuljon */
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
         border: 4px solid #fff;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
@@ -132,14 +132,13 @@
       .sidebar { flex: none; width: 100%; }
       .main-title { margin-left: 24px;}
     }
-    /* Reszponzív viselkedés a bemutatkozó doboznak */
     @media (max-width: 768px) {
         .intro-box {
-            flex-direction: column; /* Egymás alá kerül a kép és a szöveg */
+            flex-direction: column;
             text-align: center;
         }
         .intro-box h2 {
-            justify-content: center; /* Címsor középre */
+            justify-content: center;
         }
     }
   </style>
@@ -187,7 +186,7 @@
                 </p>
             </div>
             <div class="profile-image">
-                <img src="assets/profil.jpg" alt="prfofile picture">
+                <img src="assets/profil.png" alt="Mátyás Bukva profilképe">
             </div>
         </div>
       </div>
