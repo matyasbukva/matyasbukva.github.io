@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Developer OS</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #161922 url('ez.gif') no-repeat top center;
+      background-size: cover;
+      font-family: 'Fira Mono', monospace;
+    }
+    .header-image {
+      width: 100%;
+      height: 260px;
+      background: url('ez.gif') no-repeat center center;
+      background-size: cover;
+      border-bottom: 8px solid #161922;
+    }
+    .container {
+      background: #fff;
+      border-radius: 24px 24px 0 0;
+      margin-top: -40px;
+      padding: 40px 0 60px 0;
+      box-shadow: 0 8px 40px #000a;
+      min-height: 600px;
+    }
+    .main-title {
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+      letter-spacing: 1px;
+      color: #222;
+      font-family: 'Fira Mono', monospace;
+      margin-left: 96px;
+    }
+    .flex-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      max-width: 1800px;
+      margin: 0 auto;
+      gap: 48px;
+      padding: 0 60px;
+    }
+    .sidebar {
+      flex: 0 0 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .sidebar-section {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 18px 30px;
+      font-family: 'Fira Mono', monospace;
+      font-size: 1.12rem;
+      box-shadow: 0 2px 12px #aaa2;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+      outline: none;
+    }
+    .sidebar-section:hover {
+      background: #e7e7e7;
+    }
+    .sidebar-section i {
+      font-style: normal;
+      margin-right: 10px;
+      color: #555;
+      font-weight: bold;
+    }
+    .content-area {
+      flex: 1;
+      background: #fcfcfc;
+      border-radius: 12px;
+      padding: 30px 42px 34px 42px;
+      box-shadow: 0 2px 16px #aaa1;
+      min-width: 350px;
+    }
+    .dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #ee7582;
+      margin-right: 9px;
+      vertical-align: middle;
+      border: 1.5px solid #ffd1d1;
+      box-shadow: 0 1px 2px #fff7;
+    }
+    .dashboard-title {
+      font-family: 'Fira Mono', monospace;
+      font-weight: bold;
+      font-size: 1.13rem;
+      color: #4e4e4e;
+      margin-bottom: 18px;
+      margin-left: 2px;
+    }
+    .roadmap-btn {
+      font-family: 'Fira Mono', monospace;
+      background: #e6f0fc;
+      color: #1e4685;
+      border: none;
+      border-radius: 7px;
+      font-size: 1.07rem;
+      padding: 6px 14px;
+      margin-bottom: 12px;
+      margin-left: 0;
+      margin-right: 14px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px #addcff66;
+      transition: background 0.16s;
+    }
+    .roadmap-btn:hover {
+      background: #d4e4f5;
+    }
+    .tasks-list {
+      margin: 8px 0 22px 0;
+      padding-left: 18px;
+      font-size: 1.03rem;
+      color: #444;
+      font-family: 'Fira Mono', monospace;
+    }
+    .custom-checkbox {
+      appearance: none;
+      width: 17px;
+      height: 17px;
+      border: 2px solid #5698e7;
+      border-radius: 4px;
+      background: #fff;
+      vertical-align: middle;
+      margin-right: 9px;
+      position: relative;
+      top: 2px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .custom-checkbox:checked {
+      background: #5698e7;
+      border-color: #185bcb;
+    }
+    .custom-checkbox:checked:after {
+      content: "";
+      display: block;
+      width: 7px;
+      height: 11px;
+      border: solid #fff;
+      border-width: 0 3px 3px 0;
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      transform: rotate(45deg);
+    }
+    .prompt {
+      margin-top: 28px;
+      padding: 14px 0 0 0;
+      font-size: 1.1rem;
+      color: #888;
+      font-family: 'Fira Mono', monospace;
+      opacity: 0.7;
+      border-top: 1px solid #eee;
+      word-break: break-all;
+    }
+    @media (max-width: 1100px) {
+      .flex-row { flex-direction: column; padding: 0 10px;}
+      .sidebar { flex: none; width: 100%; }
+      .main-title { margin-left: 24px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header-image"></div>
+  <div class="container">
+    <div class="main-title">Developer OS</div>
+    <div class="flex-row">
+      <div class="sidebar">
+        <div class="sidebar-section"><i>{}</i> Code Snippets</div>
+        <div class="sidebar-section"><i>@</i> Projects</div>
+        <div class="sidebar-section"><i>≡</i> Tasks</div>
+        <div class="sidebar-section"><i>≡</i> Resources</div>
+      </div>
+      <div class="content-area">
+        <div class="dashboard-title"><span class="dot"></span> Dashboard</div>
+        <button class="roadmap-btn">Roadmap.sh</button>
+        <div class="tasks-list">
+          <label>
+            <input type="checkbox" checked class="custom-checkbox">
+            Daily Tasks
+          </label>
+        </div>
+        <div class="prompt">
+          |rite, press ‘space’ for AI, ‘/’ for commands…
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
