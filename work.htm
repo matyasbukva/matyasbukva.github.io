@@ -121,6 +121,39 @@
             .flex-row { flex-direction: column; align-items: center; }
             .sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; position: static; width: 100%; }
         }
+
+        /* MÓDOSÍTÁS: Új, mobilra optimalizált stílusok */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px 40px 20px;
+            }
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .timeline::before {
+                left: 8px; /* Kicsit beljebb húzzuk a vonalat */
+            }
+            .timeline-item {
+                padding-left: 40px; /* Csökkentjük a behúzást */
+                margin-bottom: 40px;
+            }
+            .timeline-item::before {
+                left: -12px; /* Igazítjuk a kört a vékonyabb behúzáshoz */
+                height: 36px;
+                width: 36px;
+                font-size: 0.75rem;
+            }
+            .publication-card {
+                padding: 15px;
+            }
+            .card-title {
+                font-size: 1rem;
+            }
+            .card-authors, .card-journal {
+                font-size: 0.8rem;
+            }
+        }
+
     </style>
 </head>
 <body>
