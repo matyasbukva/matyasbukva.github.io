@@ -1,140 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>My Work - Developer OS</title>
-  <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #161922;
-      font-family: 'Fira Mono', monospace;
-    }
-    .header-image {
-      width: 100%;
-      height: 400px;
-      background: url('assets/ez.gif') no-repeat center center;
-      background-size: cover;
-      border-bottom: 8px solid #161922;
-    }
-    .container {
-      background: #fff;
-      border-radius: 24px 24px 0 0;
-      margin-top: -40px;
-      padding: 40px 0 60px 0;
-      box-shadow: 0 8px 40px #000a;
-      min-height: 600px;
-    }
-    .main-title {
-      font-size: 2.4rem;
-      font-weight: bold;
-      margin: 0 0 20px 0;
-      letter-spacing: 1px;
-      color: #222;
-      font-family: 'Fira Mono', monospace;
-      margin-left: 96px;
-    }
-    .flex-row {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      max-width: 1800px;
-      margin: 0 auto;
-      gap: 48px;
-      padding: 0 60px;
-    }
-    .sidebar {
-      flex: 0 0 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-    .sidebar-section {
-      background: #f7f7f7;
-      border-radius: 12px;
-      padding: 18px 30px;
-      font-family: 'Fira Mono', monospace;
-      font-size: 1.12rem;
-      box-shadow: 0 2px 12px #aaa2;
-      cursor: pointer;
-      transition: background 0.15s;
-      border: none;
-      outline: none;
-      display: flex; 
-      align-items: center; 
-      text-decoration: none;
-      color: inherit;
-    }
-    .sidebar-section:hover {
-      background: #e7e7e7;
-    }
-    /* ÚJ CSS OSZTÁLY AZ AKTÍV MENÜPONT KIEMELÉSÉHEZ */
-    .sidebar-section.active {
-        background-color: #e0e0e0;
-        font-weight: 700;
-    }
-    .sidebar-section i {
-      font-style: normal;
-      margin-right: 15px; 
-      color: #333;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .content-area {
-      flex: 1;
-      min-width: 350px;
-    }
-    .work-content {
-        background-color: #ffffff;
-        border: 1px solid #f0f0f0;
-        border-radius: 12px;
-        padding: 40px;
-    }
-    .work-content h2 {
-        font-family: 'Fira Mono', monospace;
-        font-size: 1.8rem;
-        color: #333;
-        margin: 0;
-    }
-    @media (max-width: 1200px) {
-      .flex-row { 
-        flex-direction: column; 
-        align-items: center;
-        padding: 0 10px;
-      }
-      .sidebar, .content-area { 
-        flex: none; 
-        width: 100%; 
-        max-width: 800px;
-      }
-      .main-title { margin-left: 24px;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>My Work - Mátyás Bukva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Alapbeállítások és Változók --- */
+        :root {
+            --bg-color: #111319;
+            --surface-color: rgba(38, 41, 51, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary-text: #EAECEF;
+            --secondary-text: #A0A7B5;
+            --accent-color: #4A90E2; 
+            --accent-hover: #6AAFFF;
+            --tag-bg-color: rgba(230, 126, 34, 0.15);
+            --tag-text-color: #F39C12;
+            --font-main: 'Fira Mono', monospace;
+            --font-headings: 'Source Code Pro', monospace;
+            --transition-speed: 0.5s;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0; padding: 0; background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 15% 15%, rgba(74, 144, 226, 0.1), transparent 30%),
+                              radial-gradient(circle at 85% 75%, rgba(74, 144, 226, 0.08), transparent 40%);
+            font-family: var(--font-main); color: var(--primary-text);
+        }
+
+        /* --- Header és Layout --- */
+        .header-image {
+            width: 100%; height: 350px; background: url('assets/ez.gif') no-repeat center center;
+            background-size: cover; position: relative;
+        }
+        .header-image::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, var(--bg-color) 5%, transparent 50%);
+        }
+        .container {
+            max-width: 1400px; margin: -80px auto 0 auto; padding: 0 40px 60px 40px;
+            position: relative; z-index: 10;
+        }
+        .main-title {
+            font-size: 2.5rem; margin: 0 0 40px 0; text-align: center;
+            font-family: var(--font-headings); font-weight: 700; color: var(--primary-text);
+        }
+        .main-title span { color: var(--accent-color); }
+        .flex-row { display: flex; justify-content: center; align-items: flex-start; gap: 40px; }
+        
+        /* --- Oldalsáv --- */
+        .sidebar { flex: 0 0 320px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 40px; }
+        .sidebar-section {
+            background: var(--surface-color); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 24px;
+            font-family: var(--font-headings); font-size: 1rem; font-weight: 700;
+            display: flex; align-items: center; gap: 18px; cursor: pointer;
+            transition: all 0.3s ease; text-decoration: none; color: var(--secondary-text);
+        }
+        .sidebar-section:hover, .sidebar-section.active {
+            background: rgba(74, 144, 226, 0.2); border-color: rgba(74, 144, 226, 0.5);
+            transform: translateY(-3px); color: #fff;
+        }
+        .sidebar-section i { color: var(--accent-color); transition: color 0.3s ease; }
+        .sidebar-section:hover i, .sidebar-section.active i { color: var(--accent-hover); }
+
+        /* --- Idővonal Stílus --- */
+        .content-area { flex: 1; min-width: 0; }
+        .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+        
+        .timeline::before {
+            content: ''; position: absolute; top: 10px; left: 10px; height: 100%;
+            width: 2px;
+            background-color: rgba(74, 144, 226, 0.2);
+        }
+
+        .timeline-item {
+            position: relative; padding-left: 50px; margin-bottom: 50px;
+            opacity: 0; transform: translateY(30px);
+            transition: opacity var(--transition-speed) ease-out, transform var(--transition-speed) ease-out;
+        }
+        
+        .timeline-item::before {
+            content: attr(data-year); position: absolute; left: -18px; top: 5px;
+            height: 40px; width: 40px;
+            background-color: var(--bg-color); border: 2px solid var(--accent-color);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-headings); font-weight: 700; font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .timeline-item.is-visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        .publication-card {
+            background: var(--surface-color); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 20px; text-decoration: none; color: var(--primary-text);
+            display: block; transition: border-color 0.3s ease;
+        }
+        .publication-card:hover { border-color: var(--accent-color); }
+        .card-title {
+            font-family: var(--font-headings); font-size: 1.1rem; font-weight: 700;
+            margin: 0 0 8px 0; color: var(--primary-text);
+        }
+        .card-authors { font-size: 0.85rem; color: var(--secondary-text); margin-bottom: 15px; line-height: 1.6; }
+        .card-journal { font-size: 0.85rem; color: var(--primary-text); font-style: italic; }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
+        .tag {
+            background-color: var(--tag-bg-color); 
+            color: var(--tag-text-color);
+            padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;
+        }
+
+        /* --- Reszponzivitás --- */
+        @media (max-width: 1024px) {
+            .flex-row { flex-direction: column; align-items: center; }
+            .sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; position: static; width: 100%; }
+        }
+    </style>
 </head>
 <body>
-  <div class="header-image"></div>
-  <div class="container">
-    <div class="main-title">Mátyás Bukva - your favourite biostatistican</div>
-    <div class="flex-row">
-      <div class="sidebar">
-        <a href="index.htm" class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg></i>Home</a>
-        <a href="work.htm" class="sidebar-section active">
-          <i>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg>
-          </i>
-          My work so far
-        </a>
-        <div class="sidebar-section"><i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></i>JaspPlotBuilder</div>
-      </div>
-      <div class="content-area">
-        <div class="work-content">
-            <h2>My research...</h2>
+
+    <div class="header-image"></div>
+    
+    <div class="container">
+        <div class="main-title">My Work & <span>Publications</span></div>
+        
+        <div class="flex-row">
+            <div class="sidebar">
+                <a href="index.html" class="sidebar-section">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg></i>
+                    <span>Home</span>
+                </a>
+                <a href="work.htm" class="sidebar-section active">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><line x1="9" y1="9" x2="10" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9"y1="17" x2="15" y2="17"></line></svg></i>
+                    <span>My work so far</span>
+                </a>
+                <a href="#" class="sidebar-section">
+                    <i><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></i>
+                    <span>JaspPlotBuilder</span>
+                </a>
+            </div>
+            
+            <div class="content-area">
+                <ul class="timeline" id="timeline-container">
+                    </ul>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+<script>
+// A JAVASCRIPT RÉSZ VÁLTOZATLAN MARAD
+const publications = [
+    { year: 2025, title: "Proteomic profiling of serum small extracellular vesicles predicts post-COVID syndrome development", authors: "G Dobra, E Gyukity-Sebestyen, M Bukva, T Boroczky, S Nyiraty, A Miseta, K Burián, L Kereskai, G Terhes, I Kenessey, ZS-Nagy", journal: "Clinical Immunology, 110532", tags: ["Proteomics", "Machine Learning", "Biomarkers", "Post-COVID"], link: "#" },
+    { year: 2025, title: "Safety of a gastropexy device in infants and young children in percutaneous endoscopic gastrostomy tube placement", authors: "G Gavallér, M Bukva, P Gál, P Pásztor, AT Takács, C Bereczki, D Szűcs", journal: "Scientific Reports 15 (1), 1-7", tags: ["Clinical Study", "Pediatrics", "Device Safety"], link: "#" },
+    { year: 2025, title: "The Influence of Pre-IVF Day 2 TSH Levels on Treatment Success and Obstetric Outcomes: A Retrospective Single-Center Analysis with Machine Learning-Based Data Evaluation", authors: "B Nádasdi, V Vedelek, K Bereczki, M Bukva, Z Kozinszky, R Sinka, J Sikovanyecz, J Zádori, G Németh", journal: "Journal of Clinical Medicine 14 (13)", tags: ["Retrospective Analysis", "Machine Learning", "IVF", "Regression"], link: "#" },
+    { year: 2024, title: "Minimal information for studies of extracellular vesicles (MISEV2023): From basic to advanced approaches", authors: "JA Welsh, DCI Goberdhan, L O'Driscoll, EI Buzas, C Blenkiron, WE L. D. V. D. Pol, AN, M Bukva", journal: "Journal of extracellular vesicles 13 (2), e12404", tags: ["Guidelines", "Standardization", "EVs"], link: "#" },
+    { year: 2024, title: "Dynamic [99mTc] Tc-mebrofenin SPECT/CT in preoperative planning of liver resection: a prospective study", authors: "A Bakos, L Libor, S Urbán, T Géczi, M Bukva, J Hőhn, G Lázár, A Nagy, T Csekus, L Pávics", journal: "Scientific Reports 14 (1), 1-12", tags: ["SPECT/CT", "Imaging", "Prospective Study", "Hepatobiliary Scintigraphy"], link: "#" },
+    { year: 2024, title: "The ASAP study: association of atherosclerosis with pathobiology in a caucasian cohort—a study of 3400 autopsy reports", authors: "AE Jakab, M Bukva, Z Maróti, T Kalmár, I Raskó, ÉM Kereszty, VZ Papp, L Kereskai, G Melegh, B Melegh", journal: "Scientific Reports 14 (1), 25179", tags: ["Epidemiology", "Autopsy study", "Regression Analysis"], link: "#" },
+    { year: 2024, title: "Tumour regression predicts better response to interferon therapy in melanoma patients: a retrospective single centre study", authors: "NE Mezőlaki, E Baltás, HL Ócsai, A Varga, I Korom, E Varga, IB Németh, M Bukva, L Kemény, Zs Bata-Csörgő", journal: "Melanoma Research 34 (1), 54-62", tags: ["Retrospective Study", "Oncology", "Survival Analysis"], link: "#" },
+    { year: 2023, title: "MMP-9 as prognostic marker for brain tumours: a comparative study on serum-derived small extracellular vesicles", authors: "G Dobra, E Gyukity-Sebestyén, M Bukva, M Harmati, V Nagy, Z Szabó, B Bruszel, T Atlasz, L Kereskai, J Csanádi, A Miseta, L Pávics, K Burián, I Kenessey, G Terhes", journal: "Cancers 15 (3), 712", tags: ["Biomarkers", "Oncology", "EVs", "ELISA"], link: "#" },
+    { year: 2023, title: "Machine learning-based analysis of cancer cell-derived vesicular proteins revealed significant tumor-specificity and predictive potential of extracellular vesicles for cell type classification", authors: "M Bukva, G Dobra, E Gyukity-Sebestyen, T Boroczky, MM Korsos, T Atlasz, Z Szabo, L Kereskai, I Kenessey, K Burian, G Terhes", journal: "Cell Communication and Signaling 21 (1), 333", tags: ["Machine Learning", "Proteomics", "Classification", "PCA", "Random Forest"], link: "#" },
+    { year: 2022, title: "Characteristics of hepatitis E viral infections in Hungary", authors: "ÁB Ulbert, M Bukva, A Magyari, Z Túri, E Hajdú, K Burián, G Terhes", journal: "Journal of Clinical Virology 155, 105250", tags: ["Epidemiology", "Virology", "Retrospective Analysis"], link: "#" },
+    { year: 2021, title: "Raman spectral signatures of serum-derived extracellular vesicle-enriched isolates may support the diagnosis of CNS tumors", authors: "M Bukva, G Dobra, J Gomez-Perez, K Koos, M Harmati, B Bruszel, Z Szabo, L Kereskai, J J L. F. Caceres, G Terhes", journal: "Cancers 13 (6), 1407", tags: ["Raman Spectroscopy", "Machine Learning", "PCA", "LDA", "Biomarkers"], link: "#" }
+];
+
+
+function renderTimeline() {
+    const container = document.getElementById('timeline-container');
+    if (!container) return;
+    
+    let lastYear = null;
+    let htmlContent = '';
+
+    const sortedPubs = publications.sort((a, b) => {
+        if (a.year !== b.year) return b.year - a.year;
+        return a.title.localeCompare(b.title);
+    });
+
+    sortedPubs.forEach(pub => {
+        const currentYear = pub.year;
+        const yearData = (currentYear !== lastYear) ? `data-year="${currentYear}"` : `data-year="" style="background-color: transparent; border-color: transparent; color: transparent;"`;
+        
+        htmlContent += `
+            <li class="timeline-item" ${yearData}>
+                <a href="${pub.link}" class="publication-card" target="_blank" rel="noopener noreferrer">
+                    <h3 class="card-title">${pub.title}</h3>
+                    <p class="card-authors">${pub.authors}</p>
+                    <div class="card-tags">
+                        ${pub.tags.map(tag => `<div class="tag">${tag}</div>`).join('')}
+                    </div>
+                    <p class="card-journal">${pub.journal}</p>
+                </a>
+            </li>
+        `;
+        lastYear = currentYear;
+    });
+
+    container.innerHTML = htmlContent;
+}
+
+function setupScrollAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (!timelineItems.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        rootMargin: '0px',
+        threshold: 0.1
+    });
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderTimeline();
+    setupScrollAnimation();
+});
+</script>
+
 </body>
 </html>
